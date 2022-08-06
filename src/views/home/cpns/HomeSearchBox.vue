@@ -1,8 +1,8 @@
 <template>
   <div class="search-box">
     <div class="location">
-      <div class="city">广州</div>
-      <div class="position">
+      <div class="city" @click="cityClick">广州</div>
+      <div class="position" @click="positionClick">
         <span class="text">我的位置</span>
         <img src="@/assets/img/home/icon_location.png" alt="">
       </div>
@@ -11,7 +11,21 @@
 </template>
 
 <script setup>
-
+const positionClick = () => {
+  navigator.geolocation.getCurrentPosition(
+      (res) => {
+        console.log(res)
+      },
+      (err) => {
+        console.log('失败')
+      }
+  )
+}
+import { useRouter } from 'vue-router';
+const router = useRouter()
+const cityClick = () => {
+  router.push('/city')
+}
 </script>
 
 <style lang="less" scoped>
