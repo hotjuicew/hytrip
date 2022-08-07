@@ -19,18 +19,7 @@
       </van-tabs>
     </div>
     <div class="content">
-      <template v-for="(group,index) in currentGroup?.cities" :key="index">
-       <div class="group-item">
-         <h2>标题：{{group.group}}</h2>
-         <div class="list">
-           <template v-for="city in group.cities">
-            <div class="city">
-              {{city.cityName}}
-            </div>
-           </template>
-         </div>
-       </div>
-      </template>
+      <city-group :group-data="currentGroup"></city-group>
     </div>
 
   </div>
@@ -41,7 +30,7 @@ import {computed, ref} from "vue";
 import router from "@/router";
 import useCityStore from "@/stores/modules/city";
 import {storeToRefs} from 'pinia';
-
+import CityGroup from './cpns/CityGroup.vue'
 //搜索框功能
 const value = ref('');
 const searchClirck = (val) => {
