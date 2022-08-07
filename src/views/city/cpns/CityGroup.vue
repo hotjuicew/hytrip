@@ -1,6 +1,6 @@
 <template>
   <div class="city-group">
-    <van-index-bar highlight-color="#ff9854">
+    <van-index-bar highlight-color="#ff9854" :index-list="indexList">
       <van-index-anchor index="热门" />
       <div class="list">
         <template v-for="(city, index) in groupData.hotCities">
@@ -20,11 +20,18 @@
 
 <script setup>
 // 定义props
+import {computed} from "vue";
+
 const props = defineProps({
   groupData: {
     type: Object,
     default: () => ({})
   }
+})
+const indexList = computed(() => {
+  let list=props.groupData.cities.map(item =>item.group)
+  list.unshift('#')
+  return  list
 })
 </script>
 
@@ -51,3 +58,4 @@ const props = defineProps({
 }
 
 </style>
+
