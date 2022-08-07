@@ -1,18 +1,13 @@
 <template>
   <div class="city-group">
-
-    <template v-for="(group,index) in groupData.cities" :key="index">
-      <div class="group-item">
-        <h2>标题：{{group.group}}</h2>
-        <div class="list">
-          <template v-for="(city,index) in group.cities" :key="index">
-            <div class="city">
-              {{city.cityName}}
-            </div>
-          </template>
-        </div>
-      </div>
-    </template>
+    <van-index-bar>
+      <template v-for="(group,index) in groupData.cities" :key="index">
+        <van-index-anchor :index="group.group" />
+        <template v-for="(city,index) in group.cities" :key="index">
+          <van-cell :title="city.cityName" />
+        </template>
+      </template>
+    </van-index-bar>
   </div>
 </template>
 
@@ -29,4 +24,3 @@ const props = defineProps({
 <style lang="less" scoped>
 
 </style>
-把content部分抽取成独立的CityGroup
