@@ -1,6 +1,6 @@
 <template>
   <div class="city-group">
-    <van-index-bar>
+    <van-index-bar highlight-color="#ff9854">
       <template v-for="(group,index) in groupData.cities" :key="index">
         <van-index-anchor :index="group.group" />
         <template v-for="(city,index) in group.cities" :key="index">
