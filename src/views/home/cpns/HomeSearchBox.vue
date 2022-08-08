@@ -114,7 +114,6 @@ const onConfirm = (value) => {
 // 热门建议
 const homeStore = useHomeStore()
 const { hotSuggests } = storeToRefs(homeStore)
-console.log(hotSuggests)
 
 // 开始搜索
 const searchBtnClick = () => {
