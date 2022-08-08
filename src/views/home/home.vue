@@ -5,6 +5,7 @@
   </div>
 <home-search-box></home-search-box>
   <home-categories></home-categories>
+  <home-content></home-content>
 </template>
 
 <script setup>
@@ -12,6 +13,7 @@ import HomeNavBar from '@/views/home/cpns/HomeNavBar.vue'
 import HomeSearchBox from '@/views/home/cpns/HomeSearchBox.vue'
 import useHomeStore from "@/stores/modules/home";
 import HomeCategories from '@/views/home/cpns/HomeCategories.vue'
+import HomeContent from '@/views/home/cpns/HomeContent.vue'
 // 发送网络请求
 const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
