@@ -32,11 +32,36 @@
         @confirm="onConfirm"
     />
 
+
+    <!-- 价格/人数选择 -->
+    <div class="section price-counter bottom-gray-line">
+      <div class="start">价格不限</div>
+      <div class="end">人数不限</div>
+    </div>
+    <!-- 关键字 -->
+    <div class="section keyword bottom-gray-line">关键字/位置/民宿名</div>
+
+
+    <!-- 热门建议 -->
+    <div class="section hot-suggests">
+      <template v-for="(item, index) in hotSuggests" :key="index">
+        <div
+            class="item"
+            :style="{ color: item.tagText.color, background: item.tagText.background.color }"
+        >
+          {{ item.tagText.text }}
+        </div>
+      </template>
+    </div>
+
+
   </div>
 </template>
 
 <script setup>
+
 import useCityStore from "@/stores/modules/city";
+
 
 const positionClick = () => {
   navigator.geolocation.getCurrentPosition(
@@ -63,6 +88,7 @@ let {currentCity} = storeToRefs(cityStore)
 import { formatMonthDay, getDiffDays } from "@/utils/format_date"
 import {computed, ref} from "vue";
 import useMainStore from "@/stores/modules/main";
+import useHomeStore from "@/stores/modules/home";
 const mainStore = useMainStore()
 const { startDate, endDate } = storeToRefs(mainStore)
 
@@ -82,6 +108,12 @@ const onConfirm = (value) => {
   // 2.隐藏日历
   showCalendar.value = false
 }
+// 热门建议
+const homeStore = useHomeStore()
+const { hotSuggests } = storeToRefs(homeStore)
+console.log(hotSuggests)
+
+
 </script>
 
 <style lang="less" scoped>
@@ -158,6 +190,24 @@ const onConfirm = (value) => {
     text-align: center;
     font-size: 12px;
     color: #666;
+  }
+}
+.price-counter {
+  .start {
+    border-right: 1px solid  var(--line-color);
+  }
+}
+
+.hot-suggests {
+  margin: 10px 0;
+  height: auto;
+
+  .item {
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1;
   }
 }
 </style>
